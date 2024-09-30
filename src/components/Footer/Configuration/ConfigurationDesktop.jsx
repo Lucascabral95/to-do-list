@@ -46,7 +46,8 @@ const ConfigurationDesktop = ({ setActiveModal }) => {
 
   const actualizarDatos = async () => {
     try {
-      const result = await axios.post("http://localhost:3000/datos-personales", {
+      // const result = await axios.post("http://localhost:3000/datos-personales", {
+      const result = await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/datos-personales`, {
         name: datosPersonales.nombre,
         lastName: datosPersonales.apellido,
         years: datosPersonales.edad,
@@ -84,7 +85,8 @@ const ConfigurationDesktop = ({ setActiveModal }) => {
 
   const restablecerDatos = async () => {
     try {
-      const result = await axios.post("http://localhost:3000/datos-personales", {
+      // const result = await axios.post("http://localhost:3000/datos-personales", {
+      const result = await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/datos-personales`, {
         name: "",
         lastName: "",
         years: "",
@@ -110,7 +112,8 @@ const ConfigurationDesktop = ({ setActiveModal }) => {
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/datos-personales');
+        // const response = await axios.get('http://localhost:3000/datos-personales');
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/datos-personales`);
         setDatosCargados(response.data);
       } catch (error) {
         console.log(error);

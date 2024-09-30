@@ -28,7 +28,8 @@ const Login = () => {
 
   const logueoGoogle = () => {
     signIn('google', {
-      callbackUrl: 'http://localhost:3000/'
+      // callbackUrl: 'http://localhost:3000/'
+      callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}`
     });
   }
 

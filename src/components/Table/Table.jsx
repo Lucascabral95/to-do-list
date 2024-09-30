@@ -17,7 +17,8 @@ const Tablee = () => {
     const { actualizador } = useStore();
 
     useEffect(() => {
-        axios.get("http://localhost:3000/addtasks")
+        // axios.get("http://localhost:3000/addtasks")
+        axios.get(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/addtasks`)
             .then((result) => {
                 if (filtroSeleccionado === "todas") {
                     setDatos(

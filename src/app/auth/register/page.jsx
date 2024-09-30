@@ -16,7 +16,8 @@ const Register = () => {
   const creacionCuenta = async (e) => {
     e.preventDefault();
 
-    const result = await axios.post('http://localhost:3000/register', {
+    // const result = await axios.post('http://localhost:3000/register', {
+    const result = await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/register`, {
       email: email,
       password: password
     });
@@ -36,7 +37,8 @@ const Register = () => {
 
   const logueoGoogle = () => {
     signIn('google', {
-      callbackUrl: 'http://localhost:3000/'
+      // callbackUrl: 'http://localhost:3000/'
+      callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/`
     });
   }
 
