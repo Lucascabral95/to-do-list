@@ -15,6 +15,7 @@ const Hoy = () => {
     const [setUpdateData] = useState(false);
     const { actualizador } = useStore();
     const [isEmptyTask, setIsEmptyTask] = useState(false);
+    
 
     useEffect(() => {
         axios.get("http://localhost:3000/addtasks")
