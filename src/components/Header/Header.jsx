@@ -46,7 +46,7 @@ const Header = () => {
 
     try {
       // const result = await axios.post('http://localhost:3000/nuevo-proyecto', {
-      const result = await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/nuevo-proyecto`, {
+      const result = await axios.post(`/nuevo-proyecto`, {
         proyecto: nombreProyecto,
         client: idUser
       });
@@ -69,7 +69,7 @@ const Header = () => {
   useEffect(() => {
     try {
       // axios.get('http://localhost:3000/nuevo-proyecto')
-      axios.get(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/nuevo-proyecto`)
+      axios.get(`/nuevo-proyecto`)
         .then(response => {
           setArrayProyectos(response.data.datos);
         })
@@ -84,7 +84,7 @@ const Header = () => {
   const eliminarProyecto = async (id) => {
     try {
       // const eliminarTarea = await axios.delete(`http://localhost:3000/nuevo-proyecto`, {
-      const eliminarTarea = await axios.delete(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/nuevo-proyecto`, {
+      const eliminarTarea = await axios.delete(`/nuevo-proyecto`, {
         data: {
           id: id
         }

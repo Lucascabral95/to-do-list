@@ -24,7 +24,7 @@ const TasksCreator = ({ setIsOpenCreatorTasks, childrenProject }) => {
 
         try {
             // await axios.post("http://localhost:3000/addtasks", {
-            await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/addtasks`, {
+            await axios.post(`/addtasks`, {
                 tarea: titulo,
                 estado: "Pendiente",
                 prioridad: prioridad || "Prioridad 1",

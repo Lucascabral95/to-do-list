@@ -17,7 +17,8 @@ const NuevoProyecto = ({ params }) => {
 
     useEffect(() => {
         // axios.get(`http://localhost:3000/addtasks`)
-        axios.get(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/addtasks`)
+        // axios.get(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/addtasks`)
+        axios.get(`/addtasks`)
             .then((result) => {
                 setDatos(result.data.tasks.map((item) => item.projects[0] === params.id ? item : null).filter((item) => item !== null));
             })

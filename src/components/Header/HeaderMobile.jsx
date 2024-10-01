@@ -36,7 +36,7 @@ const HeaderMobile = () => {
         const traerDatos = async () => {
             try {
                 // const response = await axios.get('http://localhost:3000/nuevo-proyecto');
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/nuevo-proyecto`);
+                const response = await axios.get(`/nuevo-proyecto`);
                 setProyectos(response.data.datos);
             } catch (error) {
                 console.log(error);
@@ -53,7 +53,7 @@ const HeaderMobile = () => {
     const eliminarProyecto = async (id) => {
         try {
             // const eliminarTarea = await axios.delete(`http://localhost:3000/nuevo-proyecto`, {
-            const eliminarTarea = await axios.delete(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/nuevo-proyecto`, {
+            const eliminarTarea = await axios.delete(`/nuevo-proyecto`, {
                 data: {
                     id: id
                 }

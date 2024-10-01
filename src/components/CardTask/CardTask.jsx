@@ -14,7 +14,7 @@ const CardTask = ({ task }) => {
 
     const eliminarTarea = async (id) => {
         try {
-            const eliminacionTarea = await axios.delete(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/eliminar-tareas/${id}`);
+            const eliminacionTarea = await axios.delete(`${process.env.NEXTAUTH_URL}/eliminar-tareas/${id}`);
 
             if (eliminacionTarea.status === 200) {
                 toast.success("Tarea eliminada", {
@@ -43,7 +43,7 @@ const CardTask = ({ task }) => {
     const terminarTarea = async (id) => {
         try {
             // const terminarTarea = await axios.put(`http://localhost:3000/eliminar-tareas/${id}`);
-            const terminarTarea = await axios.put(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/eliminar-tareas/${id}`);
+            const terminarTarea = await axios.put(`${process.env.NEXTAUTH_URL}/eliminar-tareas/${id}`);
 
             if (terminarTarea.status === 200) {
                 toast.success("La tarea pasa a estar realizada", {

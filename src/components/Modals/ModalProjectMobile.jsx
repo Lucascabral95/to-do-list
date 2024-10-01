@@ -17,7 +17,7 @@ const ModalProjectMobile = ({ setModalProject }) => {
 
     try {
       // const result = await axios.post('http://localhost:3000/nuevo-proyecto', {
-      const result = await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/nuevo-proyecto`, {
+      const result = await axios.post(`/nuevo-proyecto`, {
         proyecto: nombreProyecto,
         client: idUser
       });

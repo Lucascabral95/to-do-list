@@ -17,7 +17,8 @@ const Register = () => {
     e.preventDefault();
 
     // const result = await axios.post('http://localhost:3000/register', {
-    const result = await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/register`, {
+    // const result = await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/register`, {
+    const result = await axios.post(`/register`, {
       email: email,
       password: password
     });
@@ -38,7 +39,8 @@ const Register = () => {
   const logueoGoogle = () => {
     signIn('google', {
       // callbackUrl: 'http://localhost:3000/'
-      callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/`
+      // callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/`
+      callbackUrl: `/app/hoy`
     });
   }
 
