@@ -14,8 +14,7 @@ const Tablee = () => {
     const [selectedColor, setSelectedColor] = useState("default");
     const [filtroSeleccionado, setFiltroSeleccionado] = useState("todas");
     const [isEmptyTask, setIsEmptyTask] = useState(false);
-    const { actualizador } = useStore();        
- 
+    const { actualizador } = useStore();         
     useEffect(() => {
         // axios.get("http://localhost:3000/addtasks")
         axios.get(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/addtasks`)
