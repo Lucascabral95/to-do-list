@@ -17,6 +17,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import { GoPlus } from "react-icons/go";
 import ModalProjectMobile from '../Modals/ModalProjectMobile.jsx';
 import ModalTaskMobile from '../Modals/ModalTaskMobile.jsx';
+import { usePathname } from 'next/navigation.js';
 
 const HeaderMobile = () => {
     const [activeModal, setActiveModal] = useState(false);
@@ -31,11 +32,15 @@ const HeaderMobile = () => {
     const [proyectos, setProyectos] = useState([]);
     const [modalProject, setModalProject] = useState(false);
     const [isOpenModalTask, setIsOpenModalTask] = useState(false);
+    const [imagenPerfil, setImagenPerfil] = useState("");
+    const [cantidadTareasBandeja, setCantidadTareasBandeja] = useState(null);
+    const [cantidadTareasHoy, setCantidadTareasHoy] = useState(null);
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("/app/hoy");
+    const pathName = usePathname();
 
     useEffect(() => {
         const traerDatos = async () => {
             try {
-                // const response = await axios.get('http://localhost:3000/nuevo-proyecto');
                 const response = await axios.get(`/nuevo-proyecto`);
                 setProyectos(response.data.datos);
             } catch (error) {
@@ -52,7 +57,6 @@ const HeaderMobile = () => {
 
     const eliminarProyecto = async (id) => {
         try {
-            // const eliminarTarea = await axios.delete(`http://localhost:3000/nuevo-proyecto`, {
             const eliminarTarea = await axios.delete(`/nuevo-proyecto`, {
                 data: {
                     id: id
@@ -75,6 +79,41 @@ const HeaderMobile = () => {
         }
     }
 
+    useEffect(() => {
+        axios.get(`/addtasks`)
+            .then((result) => {
+                setCantidadTareasBandeja(result.data.tasks.length);
+
+                console.log(`Cantidad de tareas: ${result.data.tasks.length}`);
+                
+
+                setCantidadTareasHoy(
+                    result.data.tasks.filter(
+                        (task) => new Date(task.fechaDeTarea).toDateString() === new Date().toDateString()
+                    ).length
+                );
+
+            })
+            .catch((error) => {
+                console.error("Error al obtener datos:", error);
+            });
+    }, [actualizador]);
+
+    useEffect(() => {
+        setCategoriaSeleccionada(pathName);
+      }, [pathName])
+
+
+    useEffect(() => {
+        const idUser = session?.user.image;
+        const imagenDefecto = "/img/imagen-perfil.jpg";
+        setImagenPerfil(session?.user.image);
+        
+        if (!idUser) {
+          setImagenPerfil(imagenDefecto);
+        }
+      }, [pathName, session?.user.image]);
+
     return (
         <header className='header-mobile'>
             <div className="contenedor-header-mobile">
@@ -92,7 +131,7 @@ const HeaderMobile = () => {
                     <div className="dddiiivvv">
                         <div className="cont-header-mobile">
                             <div className="categoria">
-                                <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" style={{ cursor: 'pointer' }} className='avat' size="md" />
+                                <Avatar src={imagenPerfil} style={{ cursor: 'pointer' }} className='avat' size="md" />
                                 <p> {session?.user.email} </p>
                             </div>
                             <div className="categoria">
@@ -107,7 +146,7 @@ const HeaderMobile = () => {
                         <div className="c-m">
                             <Link href="/app/hoy">
                                 <div className="categorias-mobile">
-                                    <div className="contenedor-de-categorias" onClick={() => {setIsOpenModalTask(true); setIsMenuOpen(!isMenuOpen)}}>
+                                    <div className="contenedor-de-categorias" onClick={() => { setIsOpenModalTask(true); setIsMenuOpen(!isMenuOpen) }}>
                                         <div className="categorias">
                                             <FaPlusCircle className="icon" color='var(--color-principal)' />
                                             <p> Añadir Tarea </p>
@@ -116,40 +155,40 @@ const HeaderMobile = () => {
                                 </div>
                             </Link>
                             <Link href="/app/bandeja-de-entrada">
-                                <div className="categorias-mobile">
+                                <div className="categorias-mobile"  style={{ backgroundColor: categoriaSeleccionada === "/app/bandeja-de-entrada" && "var(--fondo-hover)" }} >
                                     <div className="contenedor-de-categorias">
                                         <div className="categorias">
                                             <CiInboxIn className="icon" />
                                             <p> Bandeja de entrada </p>
                                         </div>
                                         <div className="longitud">
-                                            <p> 12 </p>
+                                            <p> {cantidadTareasBandeja === 0 || !cantidadTareasBandeja ? '0' : cantidadTareasBandeja} </p>
                                         </div>
                                     </div>
                                 </div>
                             </Link>
                             <Link href="/app/hoy">
                                 <div className="categorias-mobile">
-                                    <div className="contenedor-de-categorias">
+                                    <div className="contenedor-de-categorias"  style={{ backgroundColor: categoriaSeleccionada === "/app/hoy" && "var(--fondo-hover)" }}>
                                         <div className="categorias">
                                             <CiCalendarDate className="icon" />
                                             <p> Hoy </p>
                                         </div>
                                         <div className="longitud">
-                                            <p> 12 </p>
+                                            <p> {cantidadTareasHoy === 0 || !cantidadTareasHoy ? '0' : cantidadTareasHoy} </p>
                                         </div>
                                     </div>
                                 </div>
                             </Link>
                             <Link href="/app/historial-de-tareas">
                                 <div className="categorias-mobile">
-                                    <div className="contenedor-de-categorias">
+                                    <div className="contenedor-de-categorias"  style={{ backgroundColor: categoriaSeleccionada === "/app/historial-de-tareas" && "var(--fondo-hover)" }}>
                                         <div className="categorias">
                                             <CiCalendarDate className="icon" />
                                             <p> Historial de tareas </p>
                                         </div>
                                         <div className="longitud">
-                                            <p> 12</p>
+                                            <p> {cantidadTareasBandeja === 0 || !cantidadTareasBandeja ? '0' : cantidadTareasBandeja} </p>
                                         </div>
                                     </div>
                                 </div>

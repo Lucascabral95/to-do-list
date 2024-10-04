@@ -1,6 +1,6 @@
 "use client";
-import { motion } from "framer-motion"
 import "./Header.scss";
+import { motion } from "framer-motion"
 import axios from "axios";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { Avatar } from "@nextui-org/react";
@@ -20,11 +20,12 @@ import useStore from "../../../zustand";
 import { Spinner } from "@nextui-org/react";
 import ModalTaskMobile from "../Modals/ModalTaskMobile";
 import ConfigurationDesktop from "../Footer/Configuration/ConfigurationDesktop";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoadingSkeleton, setIsLoadingSkeleton] = useState(true);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("hoy");
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("/app/hoy");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { data: session } = useSession()
   const [nombreProyecto, setNombreProyecto] = useState("");
@@ -32,6 +33,8 @@ const Header = () => {
   const { actualizador, setActualizador } = useStore();
   const [isOpenModalTask, setIsOpenModalTask] = useState(false);
   const [activeModal, setActiveModal] = useState(false);
+  const [imagenPerfil, setImagenPerfil] = useState("");
+  const pathName = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -45,7 +48,6 @@ const Header = () => {
     const idUser = session?.user.id;
 
     try {
-      // const result = await axios.post('http://localhost:3000/nuevo-proyecto', {
       const result = await axios.post(`/nuevo-proyecto`, {
         proyecto: nombreProyecto,
         client: idUser
@@ -68,7 +70,6 @@ const Header = () => {
 
   useEffect(() => {
     try {
-      // axios.get('http://localhost:3000/nuevo-proyecto')
       axios.get(`/nuevo-proyecto`)
         .then(response => {
           setArrayProyectos(response.data.datos);
@@ -83,7 +84,6 @@ const Header = () => {
 
   const eliminarProyecto = async (id) => {
     try {
-      // const eliminarTarea = await axios.delete(`http://localhost:3000/nuevo-proyecto`, {
       const eliminarTarea = await axios.delete(`/nuevo-proyecto`, {
         data: {
           id: id
@@ -112,6 +112,20 @@ const Header = () => {
     }, 800);
   }, []);
 
+  useEffect(() => {
+    setCategoriaSeleccionada(pathName);
+  }, [pathName])
+
+  useEffect(() => {
+    const idUser = session?.user.image;
+    const imagenDefecto = "/img/imagen-perfil.jpg";
+    setImagenPerfil(session?.user.image);
+
+    if (!idUser) {
+      setImagenPerfil(imagenDefecto);
+    }
+  }, [pathName, session?.user.image]);
+
   return (
     <header className="header-raiz">
       <motion.header className="header-desktop"
@@ -129,7 +143,7 @@ const Header = () => {
                       <MdOutlineSpaceDashboard className="icon" />
                     </div>
                   ) : (
-                    <Avatar onClick={() => setActiveModal(true)} src="https://i.pravatar.cc/150?u=a042581f4e29026704d" style={{ cursor: 'pointer' }} size="md" />
+                    <Avatar onClick={() => setActiveModal(true)} src={imagenPerfil} style={{ cursor: 'pointer' }} size="md" />
                   )}
                 <motion.div
                   onClick={() => setActiveModal(true)}
@@ -155,22 +169,22 @@ const Header = () => {
               <div className="cats">
                 <div className="icono-nombre" onClick={() => setIsOpenModalTask(!isOpenModalTask)}>
                   <FaPlusCircle className="icon" />
-                  <p> Anadir tarea </p>
+                  <p> Añadir tarea </p>
                 </div>
                 <Link href="/app/bandeja-de-entrada">
-                  <div className="icono-nombre">
+                  <div className="icono-nombre" style={{ backgroundColor: categoriaSeleccionada === "/app/bandeja-de-entrada" && "var(--fondo-hover)" }}>
                     <CiInboxIn className="icon" />
                     <p> Bandeja de entrada </p>
                   </div>
                 </Link>
                 <Link href="/app/hoy">
-                  <div className="icono-nombre">
+                  <div className="icono-nombre" style={{ backgroundColor: categoriaSeleccionada === "/app/hoy" && "var(--fondo-hover)" }}>
                     <CiCalendarDate className="icon" />
                     <p> Hoy </p>
                   </div>
                 </Link>
                 <Link href="/app/historial-de-tareas">
-                  <div className="icono-nombre">
+                  <div className="icono-nombre" style={{ backgroundColor: categoriaSeleccionada === "/app/historial-de-tareas" && "var(--fondo-hover)" }}>
                     <GoHistory className="icon" />
                     <p> Historial de tareas </p>
                   </div>

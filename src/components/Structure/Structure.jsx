@@ -12,11 +12,11 @@ const Structure = ({ children }) => {
             <Header />
             <HeaderMobile />
 
-            <div className="contenedor">
-                <div className="desarrollo">
-                    {children}
-                </div>
-            </div>
+                <main className="contenedor">
+                    <div className="desarrollo">
+                        {children}
+                    </div>
+                </main>
 
             {/* <Footer /> */}
 

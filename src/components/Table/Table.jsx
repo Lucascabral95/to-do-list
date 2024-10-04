@@ -16,7 +16,6 @@ const Tablee = () => {
     const [isEmptyTask, setIsEmptyTask] = useState(false);
     const { actualizador } = useStore();         
     useEffect(() => {
-        // axios.get("http://localhost:3000/addtasks")
         axios.get(`/addtasks`)
             .then((result) => {
                 if (filtroSeleccionado === "todas") {

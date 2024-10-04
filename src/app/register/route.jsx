@@ -10,14 +10,14 @@ export async function POST(req) {
 
         const busquedaCliente = await Client.findOne({ email });
         if (busquedaCliente) {
-            return NextResponse.json({ error: "Email ya registrado" }, { status: 409 });
+            return NextResponse.json({ error: "Email ya registrado. Intentá con otro" }, { status: 409 });
         }
 
         if (email && password) {
             const hashedPassword = await bcrypt.hash(password, 10);
             const lowerCaseEmail = email.toLowerCase();
             await Client.create({
-                email: lowerCaseEmail,
+                email: lowerCaseEmail.toLowerCase(),
                 password: hashedPassword
             });
             return NextResponse.json({ message: "Cliente registrado exitosamente" }, { status: 200 });

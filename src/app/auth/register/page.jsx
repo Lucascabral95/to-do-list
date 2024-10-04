@@ -16,30 +16,37 @@ const Register = () => {
   const creacionCuenta = async (e) => {
     e.preventDefault();
 
-    // const result = await axios.post('http://localhost:3000/register', {
-    // const result = await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/register`, {
-    const result = await axios.post(`/register`, {
-      email: email,
-      password: password
-    });
-    if (result.status === 200) {
-      setEmail("");
-      setPassword("");
-
-      toast.success('Cuenta creada exitosamente', {
-        position: "top-center",
-        duration: 3500
+    try {
+      const result = await axios.post(`/register`, {
+        email: email,
+        password: password
       });
-    } else {
-      setError(result.data.message);
-    }
-  }
 
+      if (result.status === 200) {
+        setEmail("");
+        setPassword("");
+        setError("");
+
+        toast.success('Cuenta creada exitosamente', {
+          position: "top-center",
+          duration: 3500
+        });
+
+        setTimeout(() => {
+          window.location.href = "/auth/login";
+        }, 1800);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        setError(error.response.data.error);
+      } else {
+        setError("Ocurrió un error. Por favor, inténtalo de nuevo más tarde.");
+      }
+    }
+  };
 
   const logueoGoogle = () => {
     signIn('google', {
-      // callbackUrl: 'http://localhost:3000/'
-      // callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/`
       callbackUrl: `/app/hoy`
     });
   }
@@ -59,6 +66,17 @@ const Register = () => {
             <label htmlFor="password">Contraseña</label>
             <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" id="password" placeholder="******" required />
           </div>
+
+
+
+
+          <div className="contenedor-error">
+            {error && <p className="mensaje-de-error">{error}</p>}
+          </div>
+
+
+
+
           <div className="boton-login" style={{ marginTop: "32px" }}>
             <div className="boton" onClick={creacionCuenta}>
               <button type="submit"> Registrate </button>

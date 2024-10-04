@@ -10,8 +10,6 @@ const tasksSchema = mongoose.Schema({
         default: false
     },
     fechaDeTarea: {
-        // type: String,
-        // default: false
         type: Date,
         default: Date.now
     },

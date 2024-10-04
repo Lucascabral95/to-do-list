@@ -16,7 +16,6 @@ const ModalProjectMobile = ({ setModalProject }) => {
     const idUser = session?.user.id;
 
     try {
-      // const result = await axios.post('http://localhost:3000/nuevo-proyecto', {
       const result = await axios.post(`/nuevo-proyecto`, {
         proyecto: nombreProyecto,
         client: idUser

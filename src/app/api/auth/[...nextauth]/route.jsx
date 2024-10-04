@@ -15,7 +15,7 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         await mongo();
-        const client = await Clients.findOne({ email: credentials?.email });
+        const client = await Clients.findOne({ email: credentials?.email.toLowerCase() });
 
         if (!client) {
           throw new Error("Email no existente");
@@ -42,7 +42,7 @@ const handler = NextAuth({
 
         if (!client) {
           client = new Clients({
-            email: profile.email,
+            email: profile.email.toLowerCase(),
             name: profile.name,
             image: profile.picture, 
             googleId: profile.sub 
@@ -71,7 +71,7 @@ const handler = NextAuth({
     },
 
     async redirect({ url, baseUrl }) {
-      return process.env.REDIRECCION_LOGUEO;
+      return `${process.env.REDIRECCION_LOGUEO}`;
     },
   },
   pages: {

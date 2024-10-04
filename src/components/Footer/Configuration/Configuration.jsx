@@ -46,7 +46,6 @@ const Configuration = ({ setActiveModal }) => {
 
     const actualizarDatos = async () => {
         try {
-            // const result = await axios.post("http://localhost:3000/datos-personales", {
             const result = await axios.post(`/datos-personales`, {
                 name: datosPersonales.nombre,
                 lastName: datosPersonales.apellido,
@@ -85,7 +84,6 @@ const Configuration = ({ setActiveModal }) => {
 
     const restablecerDatos = async () => {
         try {
-            // const result = await axios.post("http://localhost:3000/datos-personales", {
             const result = await axios.post(`/datos-personales`, {
                 name: "",
                 lastName: "",
@@ -112,7 +110,6 @@ const Configuration = ({ setActiveModal }) => {
     useEffect(() => {
         const obtenerDatos = async () => {
             try {
-                // const response = await axios.get('http://localhost:3000/datos-personales');
                 const response = await axios.get(`/datos-personales`);
                 setDatosCargados(response.data);
             } catch (error) {

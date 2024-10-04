@@ -23,7 +23,6 @@ const ModalTaskMobile = ({ setIsOpenModalTask }) => {
         const adjustedDate = inputDate.toISOString().split('T')[0];
 
         try {
-            // await axios.post("http://localhost:3000/addtasks", {
             await axios.post(`/addtasks`, {
                 tarea: titulo,
                 estado: "Pendiente",
