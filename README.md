@@ -44,4 +44,4 @@ Características Principales
 - **Filtrado de Tareas**: Filtra las tareas por su estado: completadas, pendientes o próximas a realizar. También permite ver las tareas programadas para el día actual.
 - **Secciones Personalizadas**: Organiza tus tareas en diferentes secciones para una mejor categorización y control.
 - **Login Seguro**: Implementa autenticación segura con NextAuth, permitiendo a los usuarios iniciar sesión mediante correo electrónico o sus cuentas de Google.
-Este proyecto está diseñado para mejorar la productividad de los usuarios, proporcionando una manera clara y eficiente de gestionar sus tareas diarias.
+ Este proyecto está diseñado para mejorar la productividad de los usuarios, proporcionando una manera clara y eficiente de gestionar sus tareas diarias.
