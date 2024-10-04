@@ -35,7 +35,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-To-Do List
+## To-Do List
 Este proyecto de To-Do List permite a los usuarios gestionar sus tareas de manera eficiente y organizada. Con una interfaz intuitiva y características avanzadas, los usuarios pueden agregar, priorizar y hacer un seguimiento de sus actividades diarias. Además, el sistema cuenta con un inicio de sesión seguro, garantizando la protección de la información de los usuarios.
 
 Características Principales
