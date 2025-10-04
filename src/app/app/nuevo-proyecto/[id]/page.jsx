@@ -1,13 +1,13 @@
 "use client"
 import axios from 'axios'
-import Structure from '@/components/Structure/Structure.jsx'
+import Structure from '@/components/Structure/Structure'
 import { GoPlus } from "react-icons/go";
 import "../../bandeja-de-entrada/bandeja.scss"
 import { useEffect, useState } from 'react'
 import CardTask from '@/components/CardTask/CardTask';
 import TasksCreator from '@/components/TasksCreator/TasksCreator';
-import useStore from '../../../../../zustand.jsx';
-import SinTareas from '@/components/SinTareas/SinTareas.jsx';
+import useStore from '../../../../../zustand';
+import SinTareas from '@/components/SinTareas/SinTareas';
 
 const NuevoProyecto = ({ params }) => {
     const [isOpenCreatorTasks, setIsOpenCreatorTasks] = useState(false);

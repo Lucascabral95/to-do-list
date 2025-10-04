@@ -5,7 +5,7 @@ import { MdOutlineDone } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
-import useStore from "../../../zustand.jsx";
+import useStore from "../../../zustand";
 import { motion } from "framer-motion";
 
 const CardTask = ({ task }) => {

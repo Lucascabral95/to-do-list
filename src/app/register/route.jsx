@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import Client from "../../models/Client.jsx";
-import mongo from "../../services/MongoDB.jsx";
+import Client from "../../models/Client";
+import mongo from "../../services/MongoDB";
 import bcrypt from "bcrypt";
 
 export async function POST(req) {

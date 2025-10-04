@@ -7,14 +7,14 @@ import "./Table.scss";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import useStore from "../../../zustand";
-import SinTareas from "../SinTareas/SinTareas.jsx";
+import SinTareas from "../SinTareas/SinTareas";
 
 const Tablee = () => {
     const [datos, setDatos] = useState([]);
     const [selectedColor, setSelectedColor] = useState("default");
     const [filtroSeleccionado, setFiltroSeleccionado] = useState("todas");
     const [isEmptyTask, setIsEmptyTask] = useState(false);
-    const { actualizador } = useStore();         
+    const { actualizador } = useStore();
     useEffect(() => {
         axios.get(`/addtasks`)
             .then((result) => {

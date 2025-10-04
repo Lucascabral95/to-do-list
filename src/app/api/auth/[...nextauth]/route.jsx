@@ -44,15 +44,15 @@ const handler = NextAuth({
           client = new Clients({
             email: profile.email.toLowerCase(),
             name: profile.name,
-            image: profile.picture, 
-            googleId: profile.sub 
+            image: profile.picture,
+            googleId: profile.sub
           });
-          await client.save(); 
+          await client.save();
         }
 
-        user._id = client._id; 
+        user._id = client._id;
       }
-      return true; 
+      return true;
     },
 
     async jwt({ token, user }) {

@@ -5,7 +5,7 @@ import { toast, Toaster } from "react-hot-toast"
 import { useSession } from "next-auth/react"
 import axios from "axios"
 import { motion } from "framer-motion"
-import useStore from "../../../zustand.jsx"
+import useStore from "../../../zustand"
 
 const ModalProjectMobile = ({ setModalProject }) => {
   const [nombreProyecto, setNombreProyecto] = useState("");

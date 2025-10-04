@@ -1,4 +1,4 @@
-import Structure from "@/components/Structure/Structure.jsx";
+import Structure from "@/components/Structure/Structure";
 import "./NotFound.scss"
 
 const NotFound = () => {
@@ -7,7 +7,7 @@ const NotFound = () => {
             <div className="not-found">
                 <div className="contenedor">
 
-         <h1> Error 404 </h1>
+                    <h1> Error 404 </h1>
 
                 </div>
             </div>

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import mongo from "@/services/MongoDB";
 import Usuarios from "@/models/Usuarios";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/services/authOptions.jsx";
+import { authOptions } from "@/services/authOptions";
 
 export async function POST(req) {
     const IDSession = await getServerSession(authOptions);

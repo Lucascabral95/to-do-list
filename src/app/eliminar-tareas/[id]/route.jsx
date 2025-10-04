@@ -1,5 +1,5 @@
-import mongo from "@/services/MongoDB.jsx"
-import Tasks from "@/models/Tasks.jsx"
+import mongo from "@/services/MongoDB"
+import Tasks from "@/models/Tasks"
 import { NextResponse } from "next/server"
 
 export async function DELETE(req, { params }) {

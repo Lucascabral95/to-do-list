@@ -66,17 +66,9 @@ const Register = () => {
             <label htmlFor="password">Contraseña</label>
             <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" id="password" placeholder="******" required />
           </div>
-
-
-
-
           <div className="contenedor-error">
             {error && <p className="mensaje-de-error">{error}</p>}
           </div>
-
-
-
-
           <div className="boton-login" style={{ marginTop: "32px" }}>
             <div className="boton" onClick={creacionCuenta}>
               <button type="submit"> Registrate </button>

@@ -1,8 +1,8 @@
 import "./globals.css";
-import Providers from "./Providers.jsx";
+import Providers from "./Providers";
 import { NextUIProvider } from "@nextui-org/system";
 import { Inter } from "next/font/google";
-import 'react-loading-skeleton/dist/skeleton.css'
+import "react-loading-skeleton/dist/skeleton.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,17 +12,12 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <body className={inter.className}>
         <NextUIProvider>
           <Providers>
-            <div className="cont">
-
-              {children}
-
-            </div>
+            <div className="cont">{children}</div>
           </Providers>
         </NextUIProvider>
       </body>

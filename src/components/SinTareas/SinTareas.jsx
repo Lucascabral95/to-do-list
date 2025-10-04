@@ -1,5 +1,5 @@
 import "./SinTareas.scss"
-import SkeletonEstructura from "../Skeleton/Skeleton.jsx"
+import SkeletonEstructura from "../Skeleton/Skeleton"
 import Image from "next/image"
 
 const SinTareas = ({ isEmptyTask, datos, titulo, subtitulo }) => {

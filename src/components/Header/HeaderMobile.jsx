@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { GrConfigure } from "react-icons/gr";
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import useStore from '../../../zustand.jsx';
+import useStore from '../../../zustand';
 import { Avatar } from "@nextui-org/react";
 import { FaPlusCircle } from "react-icons/fa";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
@@ -12,11 +12,11 @@ import { CiInboxIn, CiCalendarDate, CiLogout } from "react-icons/ci";
 import { PiTrashSimple } from "react-icons/pi";
 import axios from 'axios';
 import { signOut } from 'next-auth/react';
-import Configuration from '../Footer/Configuration/Configuration.jsx';
+import Configuration from '../Footer/Configuration/Configuration';
 import { toast, Toaster } from 'react-hot-toast';
 import { GoPlus } from "react-icons/go";
-import ModalProjectMobile from '../Modals/ModalProjectMobile.jsx';
-import ModalTaskMobile from '../Modals/ModalTaskMobile.jsx';
+import ModalProjectMobile from '../Modals/ModalProjectMobile';
+import ModalTaskMobile from '../Modals/ModalTaskMobile';
 import { usePathname } from 'next/navigation.js';
 
 const HeaderMobile = () => {
@@ -85,7 +85,7 @@ const HeaderMobile = () => {
                 setCantidadTareasBandeja(result.data.tasks.length);
 
                 console.log(`Cantidad de tareas: ${result.data.tasks.length}`);
-                
+
 
                 setCantidadTareasHoy(
                     result.data.tasks.filter(
@@ -101,18 +101,18 @@ const HeaderMobile = () => {
 
     useEffect(() => {
         setCategoriaSeleccionada(pathName);
-      }, [pathName])
+    }, [pathName])
 
 
     useEffect(() => {
         const idUser = session?.user.image;
         const imagenDefecto = "/img/imagen-perfil.jpg";
         setImagenPerfil(session?.user.image);
-        
+
         if (!idUser) {
-          setImagenPerfil(imagenDefecto);
+            setImagenPerfil(imagenDefecto);
         }
-      }, [pathName, session?.user.image]);
+    }, [pathName, session?.user.image]);
 
     return (
         <header className='header-mobile'>
@@ -155,7 +155,7 @@ const HeaderMobile = () => {
                                 </div>
                             </Link>
                             <Link href="/app/bandeja-de-entrada">
-                                <div className="categorias-mobile"  style={{ backgroundColor: categoriaSeleccionada === "/app/bandeja-de-entrada" && "var(--fondo-hover)" }} >
+                                <div className="categorias-mobile" style={{ backgroundColor: categoriaSeleccionada === "/app/bandeja-de-entrada" && "var(--fondo-hover)" }} >
                                     <div className="contenedor-de-categorias">
                                         <div className="categorias">
                                             <CiInboxIn className="icon" />
@@ -169,7 +169,7 @@ const HeaderMobile = () => {
                             </Link>
                             <Link href="/app/hoy">
                                 <div className="categorias-mobile">
-                                    <div className="contenedor-de-categorias"  style={{ backgroundColor: categoriaSeleccionada === "/app/hoy" && "var(--fondo-hover)" }}>
+                                    <div className="contenedor-de-categorias" style={{ backgroundColor: categoriaSeleccionada === "/app/hoy" && "var(--fondo-hover)" }}>
                                         <div className="categorias">
                                             <CiCalendarDate className="icon" />
                                             <p> Hoy </p>
@@ -182,7 +182,7 @@ const HeaderMobile = () => {
                             </Link>
                             <Link href="/app/historial-de-tareas">
                                 <div className="categorias-mobile">
-                                    <div className="contenedor-de-categorias"  style={{ backgroundColor: categoriaSeleccionada === "/app/historial-de-tareas" && "var(--fondo-hover)" }}>
+                                    <div className="contenedor-de-categorias" style={{ backgroundColor: categoriaSeleccionada === "/app/historial-de-tareas" && "var(--fondo-hover)" }}>
                                         <div className="categorias">
                                             <CiCalendarDate className="icon" />
                                             <p> Historial de tareas </p>

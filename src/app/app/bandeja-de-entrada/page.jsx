@@ -1,12 +1,12 @@
 "use client";
-import Structure from "@/components/Structure/Structure.jsx";
+import Structure from "@/components/Structure/Structure";
 import "./bandeja.scss"
 import { GoPlus } from "react-icons/go";
-import TasksCreator from "@/components/TasksCreator/TasksCreator.jsx";
+import TasksCreator from "@/components/TasksCreator/TasksCreator";
 import { useEffect, useState } from "react";
-import CardTask from "@/components/CardTask/CardTask.jsx";
+import CardTask from "@/components/CardTask/CardTask";
 import axios from "axios";
-import SinTareas from "@/components/SinTareas/SinTareas.jsx";
+import SinTareas from "@/components/SinTareas/SinTareas";
 import useStore from "../../../../zustand";
 
 const BandejaDeEntrada = () => {

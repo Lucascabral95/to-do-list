@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import Tasks from "@/models/Tasks.jsx";
+import Tasks from "@/models/Tasks";
 import mongo from "@/services/MongoDB";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/services/authOptions.jsx";
+import { authOptions } from "@/services/authOptions";
 
 export async function POST(req) {
     await mongo();

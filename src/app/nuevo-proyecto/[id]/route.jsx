@@ -1,5 +1,5 @@
-import mongo from '@/services/MongoDB.jsx';
-import Tareas from "@/models/Tasks.jsx";
+import mongo from '@/services/MongoDB';
+import Tareas from "@/models/Tasks";
 import { NextResponse } from 'next/server';
 
 export async function POST(req, { params }) {
@@ -30,7 +30,7 @@ export async function POST(req, { params }) {
     }
 }
 
-export async function GET({ params }) {
+export async function GET(request, { params }) {
     try {
         mongo()
 

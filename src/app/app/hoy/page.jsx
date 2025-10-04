@@ -1,13 +1,13 @@
 "use client"
 import "./hoy.scss"
 import { GoPlus } from "react-icons/go";
-import Structure from "@/components/Structure/Structure.jsx";
+import Structure from "@/components/Structure/Structure";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CardTask from "@/components/CardTask/CardTask.jsx";
-import TasksCreator from "@/components/TasksCreator/TasksCreator.jsx";
-import useStore from "../../../../zustand.jsx";
-import SinTareas from "@/components/SinTareas/SinTareas.jsx";
+import CardTask from "@/components/CardTask/CardTask";
+import TasksCreator from "@/components/TasksCreator/TasksCreator";
+import useStore from "../../../../zustand";
+import SinTareas from "@/components/SinTareas/SinTareas";
 
 const Hoy = () => {
     const [datos, setDatos] = useState([]);
