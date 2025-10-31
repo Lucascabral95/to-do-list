@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import useStore from '../../../zustand';
 import { usePathname } from 'next/navigation';
+
+import useStore from '../../../zustand';
 
 export const useHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,7 +56,7 @@ export const useHeader = () => {
           position: 'top-center',
           duration: 3500,
         });
-        setArrayProyectos(arrayProyectos.filter((proyecto) => proyecto.id !== id));
+        setArrayProyectos(arrayProyectos.filter((proyecto: any) => proyecto.id !== id));
         setActualizador();
       }
     } catch (error) {

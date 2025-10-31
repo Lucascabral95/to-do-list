@@ -1,14 +1,14 @@
-// import Structure from "@/components/Structure/Structure";
-// import "./agregarTarea.scss"
+import Structure from "@/components/Structure/Structure";
+import "./agregarTarea.scss"
 
-// const AgregarTarea = () => {
-//   return (
-//     <Structure>
-//         <section className="agregar-tarea">
-            
-//         </section>
-//     </Structure>
-//   )
-// }
+const AgregarTarea = () => {
+  return (
+    <Structure>
+        <section className="agregar-tarea">
+           
+        </section>
+    </Structure>
+  )
+}
 
-// export default AgregarTarea;
+export default AgregarTarea;

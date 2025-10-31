@@ -1,15 +1,14 @@
+import "./proximo.scss"
+import Structure from "@/components/Structure/Structure"
 
-// import "./proximo.scss"
-// import Structure from "@/components/Structure/Structure"
+const proximo = () => {
+  return (
+    <Structure>
+      <section className="proximo">
 
-// const proximo = () => {
-//   return (
-//     <Structure>
-//       <section className="proximo">
+      </section>
+    </Structure>
+  )
+}
 
-//       </section>
-//     </Structure>
-//   )
-// }
-
-// export default proximo
+export default proximo
