@@ -1,7 +1,8 @@
-import Structure from '@/components/Structure/Structure'
 import Link from 'next/link'
-import "./Style.scss"
 import Image from 'next/image'
+
+import Structure from '@/components/Structure/Structure'
+import "./Style.scss"
 
 const NotFound = () => {
     return (

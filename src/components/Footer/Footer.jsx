@@ -1,36 +1,36 @@
-import "./Footer.scss"
-import { FaInstagram, FaFacebook, FaGithub } from "react-icons/fa6";
+'use client';
+
+import { useSocialLinks } from '@/presentation/hooks';
+import './Footer.scss';
 
 const Footer = () => {
+  const socialLinks = useSocialLinks();
+
   return (
-    <footer className="footer-definitivo">
+    <footer className="footer-definitivo" role="contentinfo">
       <div className="contenedor">
 
-        <div className="texto">
-          <p> Powered and designed by Lucas Cabral ❤ </p>
-        </div>
-
-        <div className="iconos">
-          <div className="iconic">
-            <a href="https://github.com/Lucascabral95" target="_blank">
-              <FaGithub className="icon-footer" />
-            </a>
-          </div>
-          <div className="iconic">
-            <a href="https://github.com/Lucas-Cabral" target="_blank">
-              <FaFacebook className="icon-footer" />
-            </a>
-          </div>
-          <div className="iconic">
-            <a href="https://instagream.com/lucascabral195" target="_blank">
-              <FaInstagram className="icon-footer" />
-            </a>
-          </div>
-        </div>
-
+        <nav className="iconos" aria-label="Enlaces a redes sociales">
+          {socialLinks.map((link) => {
+            const IconComponent = link.icon;
+            return (
+              <div key={link.id} className="iconic">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.ariaLabel}
+                  title={link.name}
+                >
+                  <IconComponent className="icon-footer" aria-hidden="true" />
+                </a>
+              </div>
+            );
+          })}
+        </nav>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

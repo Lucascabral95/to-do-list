@@ -8,10 +8,21 @@ export async function POST(req) {
     await mongo();
 
     try {
-        const { tarea, estado, prioridad, descripcion, client, fechaDeTarea, projects } = await req.json();
+        const { tarea, estado, prioridad, descripcion, client, fechaDeTarea, projects, proyecto } = await req.json();
 
         if (!tarea) {
             return NextResponse.json({ error: "El titulo es requerido" }, { status: 400 });
+        }
+
+        const projectsArray = [];
+        if (proyecto) {
+            projectsArray.push(proyecto);
+        } else if (projects) {
+            if (Array.isArray(projects)) {
+                projectsArray.push(...projects);
+            } else {
+                projectsArray.push(projects);
+            }
         }
 
         await Tasks.create({
@@ -21,7 +32,7 @@ export async function POST(req) {
             descripcion,
             client,
             fechaDeTarea,
-            projects
+            projects: projectsArray
         });
 
         return NextResponse.json({
